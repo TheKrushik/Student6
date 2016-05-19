@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.Editable;
 
-public class Student  {
+public class Student implements Parcelable {
 
     public String FirstName;
     public String LastName;
@@ -23,4 +23,33 @@ public class Student  {
         return String.format("%s %s, age: %s", FirstName, LastName, Age);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.FirstName);
+        dest.writeString(this.LastName);
+        dest.writeInt(this.Age);
+    }
+
+    protected Student(Parcel in) {
+        this.FirstName = in.readString();
+        this.LastName = in.readString();
+        this.Age = in.readInt();
+    }
+
+    public static final Parcelable.Creator<Student> CREATOR = new Parcelable.Creator<Student>() {
+        @Override
+        public Student createFromParcel(Parcel source) {
+            return new Student(source);
+        }
+
+        @Override
+        public Student[] newArray(int size) {
+            return new Student[size];
+        }
+    };
 }

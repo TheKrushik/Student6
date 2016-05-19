@@ -19,14 +19,14 @@ public class StudentReviewActivity extends AppCompatActivity {
         mTextView = (TextView) findViewById(R.id.textView);
 
         Intent intent = getIntent();
-        Student student = intent.getParcelableExtra(MainActivity.EXTRA_STUDENT);
+//        Student student = intent.getParcelableExtra(MainActivity.EXTRA_STUDENT);
 
         Toast.makeText(StudentReviewActivity.this, R.string.toast_review, Toast.LENGTH_SHORT).show();
 
 //        mTextView.setText(firstName + " " + lastName + ", age: " + age);
 //        textView.setText(String.format("%s %s, age: %s", student.FirstName, student.LastName, student.Age));
-        if(student.Age != 0) {
-            mTextView.setText(student.toString());
-        }
+//        if(student.Age != 0) {
+//            mTextView.setText(student.toString());
+//        }
     }
 }

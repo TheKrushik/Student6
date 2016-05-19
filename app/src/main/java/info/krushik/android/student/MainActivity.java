@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-//    public static final String EXTRA_STUDENT = "info.krushik.android.student.extra.STUDENT";
-//    private static final int REQUEST_CODE_ACTIVITY3_ADD = 1;
-//    private static final int REQUEST_CODE_ACTIVITY4_EDITING = 2;
+    public static final String EXTRA_STUDENT = "info.krushik.android.student.extra.STUDENT";
+    private static final int REQUEST_CODE_ACTIVITY_EDIT_GROUP = 1;
+    private static final int REQUEST_CODE_ACTIVITY_EDIT_STUDENT = 2;
 
     ArrayList<Student> arr;
 
