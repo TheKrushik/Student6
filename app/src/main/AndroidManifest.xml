@@ -15,9 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Activity2Review">
+        <activity android:name=".StudentReviewActivity">
         </activity>
-        <activity android:name=".Activity3Add">
+        <activity android:name=".StudentEditActivity">
         </activity>
         <activity android:name=".AboutActivity">
         </activity>
@@ -30,6 +30,8 @@
             android:value="@integer/google_play_services_version"/>
 
         <activity android:name=".Activity4Editing">
+        </activity>
+        <activity android:name=".GroupEditActivity">
         </activity>
     </application>
 

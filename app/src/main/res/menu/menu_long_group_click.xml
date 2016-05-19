@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_editing"
+        android:id="@+id/menu_group_editing"
         android:orderInCategory="0"
-        android:title="@string/button_editing"
+        android:title="@string/button_student_editin"
         />
     <item
-        android:id="@+id/menu_delete"
+        android:id="@+id/menu_group_delete"
         android:orderInCategory="1"
-        android:title="@string/button_dell"
+        android:title="@string/button_student_delete"
         />
 
 </menu>

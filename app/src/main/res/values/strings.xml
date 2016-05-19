@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Student</string>
     <string name="button_review">Просмотр</string>
-    <string name="button_editing">Редактирование</string>
+    <string name="button_student_editin">Редактирование</string>
     <string name="button_save">Сохранить</string>
     <string name="menu_about">О программе</string>
     <string name="toast_save">Изменения сохранены</string>
@@ -14,8 +14,10 @@
     <string name="student_age">Возраст</string>
     <string name="toast_age_zero">Стать студентом \nв 0 лет невозможно!!!</string>
     <string name="enter_student_age">Введите возраст</string>
-    <string name="enter_student_lastname">Введите Фамилию</string>
+    <string name="enter_student_lastname">Введите фамилию</string>
     <string name="enter_student_firstname">Введите имя</string>
-    <string name="button_dell">Удалить</string>
-    <string name="button_add_student">Добавить Группу</string>
+    <string name="button_student_delete">Удалить</string>
+    <string name="button_add_group">+Группа</string>
+    <string name="button_add_student">+Студент</string>
+    <string name="enter_group_name">Введите группу</string>
 </resources>

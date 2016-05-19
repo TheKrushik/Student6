@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ExpandableStudentAdapte extends BaseExpandableListAdapter {
+public class ExpandableStudentAdapter extends BaseExpandableListAdapter {
     private Context mContext;
     private int mGroupResourse;
     private int mChildResourse;

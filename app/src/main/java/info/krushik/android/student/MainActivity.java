@@ -8,16 +8,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String EXTRA_STUDENT = "info.krushik.android.student.extra.STUDENT";
-    private static final int REQUEST_CODE_ACTIVITY3_ADD = 1;
-    private static final int REQUEST_CODE_ACTIVITY4_EDITING = 2;
+//    public static final String EXTRA_STUDENT = "info.krushik.android.student.extra.STUDENT";
+//    private static final int REQUEST_CODE_ACTIVITY3_ADD = 1;
+//    private static final int REQUEST_CODE_ACTIVITY4_EDITING = 2;
 
     ArrayList<Student> arr;
 
@@ -26,80 +26,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        arr = new ArrayList<>(); //вывод студентов в ListView через Custom Array Adapter
-        arr.add(new Student("Ivan0", "Ivanov0", 20));
-        arr.add(new Student("Ivan1", "Ivanov1", 21));
-        arr.add(new Student("Ivan2", "Ivanov2", 22));
+        ArrayList<Group> groups = new ArrayList<>();
 
-        final StudentAdapter adapter = new StudentAdapter(
-                this,
-                R.layout.list_item,
-                arr
+        Group group = new Group(
+                "Number 1",
+                new Student[]{
+                        new Student("Ivan0", "Ivanov0", 20),
+                        new Student("Ivan1", "Ivanov1", 21),
+                        new Student("Ivan2", "Ivanov2", 22)
+                });
+        groups.add(group);
+
+        group = new Group(
+                "Number 2",
+                new Student[0]);
+        groups.add(group);
+
+        group = new Group(
+                "Number 3",
+                new Student[]{
+                        new Student("Ivan3", "Ivanov3", 23),
+                        new Student("Ivan4", "Ivanov4", 24)
+                });
+        groups.add(group);
+
+        ExpandableStudentAdapter adapter = new ExpandableStudentAdapter(
+                this, R.layout.group_item, R.layout.child_iten, groups
         );
 
-        final ListView listView = (ListView) findViewById(R.id.listView);
+        ExpandableListView listView = (ExpandableListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
-// обработка короткого клика конкретного элеметна списка, а не всего ListView
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
-//нам приходит( Adapter, View вся на кот. мы нажали, position - конкретный элемент(0,1,2), id-нашего ListView)
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Student student = arr.get(position);
-
-                Intent intent = new Intent(MainActivity.this, Activity2Review.class);
-                intent.putExtra(EXTRA_STUDENT, student);
-                startActivity(intent);
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                return false;
             }
         });
-
-//        adapter.setStudentListener(new StudentAdapter.StudentListener() {
-//            @Override
-//            public void onDeleteClick(Student student) {
-//                Toast.makeText(MainActivity.this, student.toString(), Toast.LENGTH_SHORT).show();
-//                arr.remove(student);
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-
-// обработка длинного клика конкретного элеметна списка, а не всего ListView
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-                final Student student = arr.get(position);
-
-                PopupMenu popupMenu = new PopupMenu(MainActivity.this, listView);//как вывести Popup возле указанного студента по LongClickу???
-                popupMenu.inflate(R.menu.menu_long_item_click);
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem){
-
-                        switch (menuItem.getItemId()) {
-                            case R.id.menu_editing://как передать на редактирование строки указзанного студента???
-//                                Student student = new Student();
-                                student.FirstName = arr.get(position).FirstName;
-                                student.LastName = arr.get(position).LastName;
-                                student.Age = arr.get(position).Age;
-
-                                Intent intent3 = new Intent(MainActivity.this, Activity4Editing.class);
-                                intent3.putExtra(EXTRA_STUDENT, student);
-                                startActivityForResult(intent3, REQUEST_CODE_ACTIVITY4_EDITING);
-
-                                break;
-                            case R.id.menu_delete:
-                                arr.remove(student);
-                                adapter.notifyDataSetChanged();
-
-                                break;
-                        }
-                        return false;
-                    }
-                });
-                popupMenu.show();
-                return true;
-            }
-        });
-
     }
 
 
@@ -112,10 +75,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.menu1:
                 Intent intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.menu2:
+                Intent intent2 = new Intent(this, GroupEditActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.menu3:
+                Intent intent3 = new Intent(this, StudentEditActivity.class);
+                startActivity(intent3);
                 break;
         }
         return super.onOptionsItemSelected(item);
