@@ -1,9 +1,13 @@
 package info.krushik.android.student;
 
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 
 public class StudentEditActivity extends AppCompatActivity {
 
@@ -21,7 +25,17 @@ public class StudentEditActivity extends AppCompatActivity {
         mEditTextLastName = (EditText) findViewById(R.id.etLastName);
         mEditTextAge = (EditText) findViewById(R.id.etAge);
         mButtonSave = (Button) findViewById(R.id.btnGroupSave);
+
+//        ArrayAdapter<Group> adapter = new ArrayAdapter<Group>(
+//                this,
+//                android.R.layout.simple_spinner_item,
+//                group);
 //
+//        Spinner spinnerGroup = (Spinner) findViewById(R.id.spinnerGroup);
+
+
+
+
 //        Intent intent = getIntent();
 //
 //        final Student student = intent.getParcelableExtra(MainActivity.EXTRA_STUDENT);

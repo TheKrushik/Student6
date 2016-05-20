@@ -20,13 +20,20 @@ public class GroupEditActivity extends AppCompatActivity {
         mEditTextGroupName = (EditText) findViewById(R.id.etGroupName);
         mButtonGroupSave = (Button) findViewById(R.id.btnGroupSave);
 
+//        Intent intent = getIntent();
+//
+//        final Group group = intent.getParcelableExtra(MainActivity.EXTRA_GROUP);
+//        mEditTextGroupName.setText(group.Number.toString());
+
+
         mButtonGroupSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //передаем новую группу
-                Intent ressultIntent = new Intent(GroupEditActivity.this, MainActivity.class);
-                ressultIntent.putExtra(MainActivity.EXTRA_GROUP, mEditTextGroupName.getText().toString());
-                startActivity(ressultIntent);
+                Intent resultIntent = new Intent(GroupEditActivity.this, MainActivity.class);
+                resultIntent.putExtra(MainActivity.EXTRA_GROUP, mEditTextGroupName.getText().toString());
+                setResult(RESULT_OK, resultIntent);
+                finish();
 
             }
         });

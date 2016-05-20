@@ -23,15 +23,18 @@ public class MainActivity extends AppCompatActivity {
 
 //    ArrayList<Student> arr;
     public TextView mTextViewGroupName;
+    public ArrayList<Group> groups;
+    public Group group;
+    public ExpandableStudentAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Group> groups = new ArrayList<>();
+        groups = new ArrayList<>();
 
-        Group group = new Group(
+        group = new Group(
                 "Number 1",
                 new Student[]{
                         new Student("Ivan0", "Ivanov0", 20),
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 });
         groups.add(group);
 
-        ExpandableStudentAdapter adapter = new ExpandableStudentAdapter(
+        adapter = new ExpandableStudentAdapter(
                 this, R.layout.group_item, R.layout.child_iten, groups
         );
 
@@ -68,9 +71,7 @@ public class MainActivity extends AppCompatActivity {
         });
         //принимаем новую группу и заносим ее в массив групп
         mTextViewGroupName = (TextView) findViewById(R.id.textViewGroupName);
-        String mTextViewGroupName = getIntent().getStringExtra(EXTRA_GROUP);
-        group = new Group(mTextViewGroupName, new Student[0]);
-        groups.add(group);
+
 
 
     }
@@ -85,22 +86,43 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.menu1:
-                Intent intent = new Intent(this, AboutActivity.class);
+                intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
                 break;
             case R.id.menu2:
-                Intent intent2 = new Intent(this, GroupEditActivity.class);
-                startActivity(intent2);
+                intent = new Intent(this, GroupEditActivity.class);
+//                intent.putExtra(EXTRA_STUDENT, group);
+                startActivityForResult(intent, REQUEST_CODE_ACTIVITY_EDIT_GROUP);
                 break;
             case R.id.menu3:
-                Intent intent3 = new Intent(this, StudentEditActivity.class);
-                startActivity(intent3);
+                intent = new Intent(this, StudentEditActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_CODE_ACTIVITY_EDIT_GROUP:
+                    String mTextViewGroupName = data.getParcelableExtra(EXTRA_GROUP);
+                    group = new Group(mTextViewGroupName, new Student[0]);
+                    groups.add(group);
+
+
+                case REQUEST_CODE_ACTIVITY_EDIT_STUDENT:
+//                    mTextViewFirstName.setText(student.FirstName.toString());
+//                    mTextViewLastName.setText(student.LastName.toString());
+//                    mTextViewAge.setText(String.valueOf(student.Age));
+//                    student.FirstName = arr.set(position)
+
+            }
+//
+        }
     }
 
 }
