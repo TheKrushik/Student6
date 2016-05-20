@@ -54,7 +54,7 @@ public class ExpandableStudentAdapter extends BaseExpandableListAdapter {
 
         Group group = (Group) getGroup(groupPosition);
 
-        ((TextView) view.findViewById(R.id.textViewNumber)).setText(group.Number);
+        ((TextView) view.findViewById(R.id.textViewGroupName)).setText(group.Number);
 
         View indicator = view.findViewById(R.id.indicator);
         if(getChildrenCount(groupPosition)> 0) {

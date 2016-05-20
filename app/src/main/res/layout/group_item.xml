@@ -12,7 +12,7 @@
         android:background="@color/green"/>
 
     <TextView
-        android:id="@+id/textViewNumber"
+        android:id="@+id/textViewGroupName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"

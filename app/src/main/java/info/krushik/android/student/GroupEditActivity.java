@@ -23,8 +23,10 @@ public class GroupEditActivity extends AppCompatActivity {
         mButtonGroupSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent ressultIntent = new Intent();
+                //передаем новую группу
+                Intent ressultIntent = new Intent(GroupEditActivity.this, MainActivity.class);
+                ressultIntent.putExtra(MainActivity.EXTRA_GROUP, mEditTextGroupName.getText().toString());
+                startActivity(ressultIntent);
 
             }
         });

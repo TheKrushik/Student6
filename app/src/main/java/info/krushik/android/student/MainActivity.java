@@ -10,16 +10,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_STUDENT = "info.krushik.android.student.extra.STUDENT";
+    public static final String EXTRA_GROUP = "Group";
     private static final int REQUEST_CODE_ACTIVITY_EDIT_GROUP = 1;
     private static final int REQUEST_CODE_ACTIVITY_EDIT_STUDENT = 2;
 
-    ArrayList<Student> arr;
+//    ArrayList<Student> arr;
+    public TextView mTextViewGroupName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        //принимаем новую группу и заносим ее в массив групп
+        mTextViewGroupName = (TextView) findViewById(R.id.textViewGroupName);
+        String mTextViewGroupName = getIntent().getStringExtra(EXTRA_GROUP);
+        group = new Group(mTextViewGroupName, new Student[0]);
+        groups.add(group);
+
+
     }
 
 
